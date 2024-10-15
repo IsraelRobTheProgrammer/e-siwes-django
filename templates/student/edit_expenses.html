@@ -1,0 +1,77 @@
+{% extends "base.html" %} {%block content%}
+<div class="container mt-4">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="{% url 'expenses_homepage' %}">Expenses</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Edit Expense</li>
+    </ol>
+  </nav>
+
+  <div class="card">
+    <div class="card-body">
+      <form action="{% url 'edit_expenses' expense.id %}" method="post">
+        {% csrf_token %} {% include "partials/_messages.html" %}
+        <div class="form-group">
+          <label for="">Amount</label>
+          <input
+            type="number"
+            class="form-control form-control-sm"
+            name="amount"
+            min="1"
+            value="{{fieldValues.amount}}"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="">Description</label>
+          {% comment %} value="{{fieldValues.amount}}" {% endcomment %}
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            name="desc"
+            value="{{fieldValues.desc}}"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="">Category</label>
+          <select
+            class="form-control form-control-sm"
+            style="cursor: pointer"
+            name="category"
+          >
+            {% comment %}
+            <option selected>Choose Your Expense</option>
+            {% endcomment %}
+            <option selected name="category" value="{{fieldValues.category}}">
+              {{fieldValues.category}}
+            </option>
+            {% for category in categories %}
+            <option name="category" value="{{category.name}}">
+              {{category.name}}
+            </option>
+
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="">Date Of Expense</label>
+          <input
+            type="date"
+            class="form-control form-control-sm"
+            name="expense_date"
+            value="{{fieldValues.date |date:'Y-m-d'}}"
+          />
+        </div>
+        <input type="submit" value="Edit" class="btn btn-primary" />
+      </form>
+    </div>
+  </div>
+</div>
+
+{% comment %}
+<h1>Add Expense</h1>
+{% endcomment %} {%endblock content%}
