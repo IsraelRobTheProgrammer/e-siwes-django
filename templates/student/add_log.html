@@ -1,0 +1,61 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{%block content%}
+<div class="container mt-4">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="{% url 'student_home' %}">All Logs</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Create New Log</li>
+    </ol>
+  </nav>
+
+  <div class="card">
+    <div class="card-body">
+      <form action="{% url 'add_log' %}" method="POST"  enctype="multipart/form-data">
+        {% csrf_token %} 
+        {% include "partials/_messages.html" %}
+
+        <div>
+          <label for="">Description (required)</label>
+          <input
+          style="margin-bottom: 10px;"
+            type="text"
+            class="form-control form-control-sm"
+            name="log_desc"
+            value="{{fieldValues.desc}}"
+          />
+        </div>
+
+        <div>
+          <label for="log_img" 
+          style="background: #0450d5;
+          color: white;
+          line-height: 1.2;
+          padding: 10px;
+          margin-bottom: 10px;
+          border-radius: 4px;
+          cursor: pointer;">
+          Upload Image( where possible ) </label>
+          <input 
+          id="log_img"
+          style="position: absolute; 
+                z-index: -1;"
+          accept="image/*"
+          capture="camera"
+          type="file" 
+          class="form-control form-control-sm"
+          name="log_img">
+
+          <div id="fileInfo"></div>
+        </div> 
+        <input type="submit" value="Submit" class="btn btn-primary" />
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src={% static "js/main.js" %}></script>
+{%endblock content%}

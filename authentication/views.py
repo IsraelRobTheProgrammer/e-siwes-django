@@ -96,6 +96,7 @@ class Register_View(View):
         last_name = request.POST["last_name"]
         mat_no = request.POST["mat_no"]
         department = request.POST["department"]
+        faculty = request.POST["faculty"]
         password = request.POST["password"]
 
         context = {"fieldValues": request.POST}
@@ -108,6 +109,7 @@ class Register_View(View):
             or not last_name
             or not password
             or not email
+            or not faculty
         ):
             print("no sus")
             messages.error(request, "Some fields are missing")
@@ -126,6 +128,7 @@ class Register_View(View):
                     last_name=last_name,
                     mat_no=mat_no,
                     department=department,
+                    faculty=faculty,
                 )
                 user.is_active = False
 
@@ -133,6 +136,8 @@ class Register_View(View):
                 print(student, "student")
 
                 user.save()
+                student.save()
+                
 
                 # path_to_view
                 # - get current domain

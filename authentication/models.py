@@ -8,9 +8,10 @@ from django.contrib.auth.models import User
 class Student(models.Model):
     user = models.OneToOneField(to=User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=200, null=False)
+    faculty = models.CharField(max_length=200, null=False)
     last_name = models.CharField(max_length=200, null=False)
     department = models.CharField(max_length=50, null=False)
-    mat_no = models.IntegerField(null=False)
+    mat_no = models.CharField(max_length=9, null=False)
     # level = models.IntegerField()
 
     def __str__(self):

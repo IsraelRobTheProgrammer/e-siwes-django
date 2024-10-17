@@ -15,7 +15,7 @@ searchField.addEventListener("keyup", (e) => {
 
   if (searchValue.trim().length > 0) {
     paginationContainer.style.display = "none";
-    fetch("/search_expenses", {
+    fetch("/search_logs", {
       body: JSON.stringify({ searchText: searchValue }),
       method: "POST",
     })
@@ -38,10 +38,9 @@ searchField.addEventListener("keyup", (e) => {
               Tbody.innerHTML += `
                     <tr>
                     
-                    <td>${item.amount}</td>
-                    <td>${item.category}</td>
                     <td>${item.desc}</td>
                     <td>${item.date}</td>
+                    <td>${item.image}</td>
                     
                     
                     </tr>

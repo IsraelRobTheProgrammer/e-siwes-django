@@ -3,52 +3,46 @@
 
 {%block content %}
 
-<H1>HOME</H1>
-
-{% comment %} <div class="container mt-4">
+<div class="container mt-4">
   <div class="row">
     <div class="col-md-10">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="">Expenses</a></li>
+          <li class="breadcrumb-item"><a href="">Logs</a></li>
           <li class="breadcrumb-item active" aria-current="page">
-            My Expenses
+            Your Logs
           </li>
         </ol>
       </nav>
     </div>
 
     <div class="col-md-2">
-      <a href="{% url 'add_expenses' %}" class="btn btn-primary">
-        Add Expense</a>
+      <a href="{% url 'add_log' %}" class="btn btn-primary">
+        Create New Log</a>
     </div>
   </div>
 
 
-  <div class="container">
+   <div class="container">
     {% include 'partials/_messages.html'%}
-    {% if expenses.count %}
-    <div class="row col-md-8"></div>
+    {% if logs.count %}
+    {% comment %} <div class="row col-md-4"></div> {% endcomment %}
 
-    <div class="row col-md-4">
-      <a href="{% url "export_pdf"%}" class="btn btn-info" > Export PDF </a> 
+     <div class="row col-md-4">
+      <a href="{% url "student_home"%}" class="btn btn-primary" > Export PDF </a> 
 
-      <a href="{% url "export_excel"%}" class="btn btn-primary" > Export Excel </a> 
       
-      <a href="{% url "export_csv"%}" class="btn btn-secondary" > Export CSV </a> 
       
       <div class="form-group">
         <input type="text" class="form-control" id="searchField" placeholder="Search By Anything" />
       </div>
-    </div>
+    </div> 
 
     <div class="app-table">
 
       <table class="table table-stripped table-hover">
         <thead>
           <tr>
-            <th>Amount ({{currency}})</th>
-            <th>Category</th>
             <th>Description</th>
             <th>Date</th>
             <th></th>
@@ -57,14 +51,13 @@
         </thead>
 
         <tbody>
-          {% for expense in page_obj%}
+          {% for log in page_obj%}
           <tr>
-            <td>{{expense.amount}}</td>
-            <td>{{expense.category}}</td>
-            <td>{{expense.desc}}</td>
-            <td>{{expense.date}}</td>
-            <td><a href="{% url "edit_expenses" expense.id %}" class="btn btn-secondary btn-sm">Edit</a></td>
-            <td><a href="{% url "delete_expenses" expense.id %}" class="btn btn-danger btn-sm">Delete</a></td>
+            <td>{{log.desc}}</td>
+            <td>{{log.date}}</td>
+            <td><a href="{% url "edit_log" log.id %}" class="btn btn-secondary btn-sm">Edit</a></td>
+            <td><a href="" class="btn btn-success btn-sm">More Details</a></td>
+            {% comment %} <td><a href="{% url "delete_log" log.id %}" class="btn btn-danger btn-sm">Delete</a></td> {% endcomment %}
           </tr>
           {% endfor %}
         </tbody>
@@ -77,10 +70,9 @@
       <table class="table table-stripped table-hover">
         <thead>
           <tr>
-            <th>Amount ({{currency}})</th>
-            <th>Category</th>
             <th>Description</th>
             <th>Date</th>
+            <th>Image</th>
           </tr>
         </thead>
 
@@ -111,11 +103,13 @@
         {% endif %}
 
       </ul>
+      {% else %}
+      <p>No Logs Created</p>
 
       {% endif %}
     </div>
-  </div>
+  </div> 
 </div>
-<script src={% static "js/searchExpenses.js" %}></script> {% endcomment %}
+<script src={% static "js/searchExpenses.js" %}></script>
 
 {%endblock content%}

@@ -4,9 +4,9 @@ from django.urls import path
 
 urlpatterns = [
     path("", views.home, name="student_home"),
-    # path("add_expenses", views.add_expenses, name="add_expenses"),
+    path("create_new_log", views.add_log, name="add_log"),
     # path("search_expenses", views.search_expenses, name="search_expenses"),
-    # path("edit_expenses/<int:id>", views.edit_expenses, name="edit_expenses"),
+    path("edit_log/<int:id>", views.edit_log, name="edit_log"),
     # path("delete_expenses/<int:id>", views.delete_expenses, name="delete_expenses"),
     # path(
     #     "expenses_category_summary",
