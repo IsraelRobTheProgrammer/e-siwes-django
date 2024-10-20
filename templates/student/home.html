@@ -29,12 +29,9 @@
     {% comment %} <div class="row col-md-4"></div> {% endcomment %}
 
      <div class="row col-md-4">
-      <a href="{% url "student_home"%}" class="btn btn-primary" > Export PDF </a> 
-
-      
       
       <div class="form-group">
-        <input type="text" class="form-control" id="searchField" placeholder="Search By Anything" />
+        <input type="text" class="form-control mb-2" id="searchField" placeholder="Search By Anything" />
       </div>
     </div> 
 
@@ -43,6 +40,7 @@
       <table class="table table-stripped table-hover">
         <thead>
           <tr>
+            <th>Title</th>
             <th>Description</th>
             <th>Date</th>
             <th></th>
@@ -53,10 +51,11 @@
         <tbody>
           {% for log in page_obj%}
           <tr>
+            <td>{{log.title}}</td>
             <td>{{log.desc}}</td>
             <td>{{log.date}}</td>
             <td><a href="{% url "edit_log" log.id %}" class="btn btn-secondary btn-sm">Edit</a></td>
-            <td><a href="" class="btn btn-success btn-sm">More Details</a></td>
+            <td><a href="{% url "show_log" log.id %}" class="btn btn-success btn-sm">More Details</a></td>
             {% comment %} <td><a href="{% url "delete_log" log.id %}" class="btn btn-danger btn-sm">Delete</a></td> {% endcomment %}
           </tr>
           {% endfor %}

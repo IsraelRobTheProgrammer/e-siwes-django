@@ -1,4 +1,4 @@
-from collections.abc import Callable, Iterable, Mapping
+# from collections.abc import Callable, Iterable, Mapping
 from typing import Any
 from django.shortcuts import render, redirect
 from django.views import View

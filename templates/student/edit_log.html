@@ -3,48 +3,48 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="{% url 'expenses_homepage' %}">Expenses</a>
+        <a href="{% url 'student_home' %}">All Logs</a>
       </li>
-      <li class="breadcrumb-item active" aria-current="page">Edit Expense</li>
+      <li class="breadcrumb-item active" aria-current="page">Edit Log</li>
     </ol>
   </nav>
 
   <div class="card">
     <div class="card-body">
-      <form action="{% url 'edit_log' log.id %}" method="post">
+      <form action="{% url 'edit_log' log.id %}" method="POST"  enctype="multipart/form-data">
         {% csrf_token %} {% include "partials/_messages.html" %}
-        <div class="form-group">
-          <label for="">Amount</label>
+
+        <div>
+          <label for="">Title (required)</label>
           <input
-            type="number"
+          style="margin-bottom: 10px;"
+            type="text"
             class="form-control form-control-sm"
-            name="amount"
-            min="1"
-            value="{{fieldValues.amount}}"
+            name="log_title"
+            value="{{fieldValues.title}}"
+            placeholder="write a short summary here"
           />
         </div>
 
+
         <div class="form-group">
           <label for="">Description</label>
-          {% comment %} value="{{fieldValues.amount}}" {% endcomment %}
           <input
             type="text"
+            style="margin-bottom: 10px;"
             class="form-control form-control-sm"
-            name="desc"
+            name="log_desc"
             value="{{fieldValues.desc}}"
           />
         </div>
 
-        <div class="form-group">
+        {% comment %} <div class="form-group">
           <label for="">Category</label>
           <select
             class="form-control form-control-sm"
             style="cursor: pointer"
             name="category"
           >
-            {% comment %}
-            <option selected>Choose Your Expense</option>
-            {% endcomment %}
             <option selected name="category" value="{{fieldValues.category}}">
               {{fieldValues.category}}
             </option>
@@ -55,23 +55,38 @@
 
             {% endfor %}
           </select>
-        </div>
+        </div> {% endcomment %}
 
-        <div class="form-group">
-          <label for="">Date Of Expense</label>
-          <input
-            type="date"
-            class="form-control form-control-sm"
-            name="expense_date"
-            value="{{fieldValues.date |date:'Y-m-d'}}"
-          />
-        </div>
+        <div> 
+          <label for="log_img" 
+          style="background: #0450d5;
+          color: white;
+          line-height: 1.2;
+          padding: 10px;
+          margin-bottom: 10px;
+          border-radius: 4px;
+          cursor: pointer;">
+          Upload Image( where possible ) </label>
+          <input 
+          id="log_img"
+          accept="image/*"
+          style="display: none;"
+          capture="camera"
+          type="file" 
+          class="form-control form-control-sm"
+          name="log_img">
+
+          <div id="fileInfo"></div>
+        </div> 
         <input type="submit" value="Edit" class="btn btn-primary" />
       </form>
     </div>
   </div>
 </div>
+<script>
 
+
+</script>
 {% comment %}
 <h1>Add Expense</h1>
 {% endcomment %} {%endblock content%}

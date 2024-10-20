@@ -6,20 +6,19 @@ if (message) {
   console.log("in message");
   setTimeout(function () {
     message.style.display = "none";
-  }, 2000);
+  }, 5000);
 }
 
-const img = document.querySelector("container-fluid");
+const img = document.getElementById("log_img");
 if (img) {
   console.log("there's image");
   img.addEventListener("change", function (event) {
     var file = event.target.files[0];
     console.log(file.name, "name");
     var fileInfo = `
-  <p>File Name: ${file.name}</p>
-  <p>File Size: ${file.size} bytes</p>
-  <p>File Type: ${file.type}</p>
+  <span>File Name: ${file.name}</span>
+
   `;
-    document.querySelector("fileInfo").innerHTML = fileInfo;
+    document.getElementById("fileInfo").innerHTML = fileInfo;
   });
 }

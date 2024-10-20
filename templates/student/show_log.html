@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <a href="{% url 'export_word' log.id %}" class="btn btn-primary">Export Word</a>
+{% endblock %}

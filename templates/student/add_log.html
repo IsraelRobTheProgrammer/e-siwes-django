@@ -19,12 +19,25 @@
         {% include "partials/_messages.html" %}
 
         <div>
+          <label for="">Title (required)</label>
+          <input
+          style="margin-bottom: 10px;"
+            type="text"
+            class="form-control form-control-sm"
+            name="log_title"
+            value="{{fieldValues.desc}}"
+            placeholder="write a short summary here"
+          />
+        </div>
+
+        <div>
           <label for="">Description (required)</label>
           <input
           style="margin-bottom: 10px;"
             type="text"
             class="form-control form-control-sm"
             name="log_desc"
+            placeholder="evrything you did today..."
             value="{{fieldValues.desc}}"
           />
         </div>
@@ -57,5 +70,4 @@
   </div>
 </div>
 
-<script src={% static "js/main.js" %}></script>
-{%endblock content%}
+  {%endblock content%}
